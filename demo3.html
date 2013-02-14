@@ -1,0 +1,66 @@
+<html>
+  <head>
+    <title>HighCharts - Line with Regression Demo</title>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+    <script type="text/javascript" src="http://highcharts.com/js/testing.js"></script>
+    <script type="text/javascript" src="regression.js"></script>
+  </head>
+  <body>
+
+    <h2>Line Regression</h2>
+    <div id="linear" style="width: 350px; height: 350px;"></div>
+
+    <script type="text/javascript">
+
+      // define data array
+      var sourceData = [
+          106.4, 271.8, 129.2, 213.4,
+          295.6, 432.3, 154.4, 398.1,
+          129.9, 133.2, 271.5, 432.1,
+          144.0, 134.7, 176.0, 399.2,
+          216.4, 319.2, 194.1, 542.1,
+          435.6, 665.3, 348.5, 435.9
+      ];
+
+      var chart_linear = new Highcharts.Chart({
+          chart: {
+            renderTo: 'linear'
+          },
+          plotOptions: {
+            series: {
+              enableMouseTracking: false
+            }
+          },
+          series: [{
+            type: 'line',
+            data: sourceData
+          }]
+      });
+
+      /* add regression line dynamically */
+      chart_linear.addSeries({
+        type: 'line',
+        marker: { enabled: false },
+        /* function returns data for trend-line */
+        data: (function() {
+          return fitOneDimensionalData(sourceData);
+        })()
+      });
+
+      function fitOneDimensionalData(source_data) {
+        var trend_source_data = [];
+        for(var i = source_data.length; i-->0;) {
+          trend_source_data[i] = [i, source_data[i]]
+        }
+        var regression_data = fitData(trend_source_data).data
+        var trend_line_data = [];
+        for(var i = regression_data.length; i-->0;) {
+          trend_line_data[i] = regression_data[i][1];
+        }
+        return trend_line_data;
+      }
+
+    </script>
+
+  </body>
+</html>
