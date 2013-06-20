@@ -1,0 +1,63 @@
+<html>
+  <head>
+    <title>HighCharts - Line with Regression Demo</title>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+    <script type="text/javascript" src="http://highcharts.com/js/testing.js"></script>
+    <script type="text/javascript" src="regression.js"></script>
+  </head>
+  <body>
+
+    <h2>Line Regression (X axis set to category)</h2>
+    <div id="linear" style="width: 350px; height: 350px;"></div>
+
+    <script type="text/javascript">
+
+      // define data array
+      var sourceData = [73.0, 61.9, 20.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 39.6];
+
+      var chart_linear = new Highcharts.Chart({
+          chart: {
+            renderTo: 'linear'
+          },
+		  xAxis: [{
+			categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+                    'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+          }],
+          plotOptions: {
+            series: {
+              enableMouseTracking: false
+            }
+          },
+          series: [{
+            type: 'line',
+            data: sourceData
+          }]
+      });
+
+      /* add regression line dynamically */
+      chart_linear.addSeries({
+        type: 'line',
+        marker: { enabled: false },
+        /* function returns data for trend-line */
+        data: (function() {
+          return fitOneDimensionalData(sourceData);
+        })()
+      });
+
+      function fitOneDimensionalData(source_data) {
+        var trend_source_data = [];
+        for(var i = source_data.length; i-->0;) {
+          trend_source_data[i] = [i, source_data[i]]
+        }
+        var regression_data = fitData(trend_source_data).data
+        var trend_line_data = [];
+        for(var i = regression_data.length; i-->0;) {
+          trend_line_data[i] = regression_data[i][1];
+        }
+        return trend_line_data;
+      }
+
+    </script>
+
+  </body>
+</html>
