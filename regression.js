@@ -80,16 +80,16 @@ function fitData(data, typ) {
   var ypred = [];
 
   for (i = 0; i < data.length; i++) {
-	if (data[i] != null && Array.isArray(data[i])){
-		if (data[i] != null && data[i][0] != null && data[i][1] != null) {
-		  x.push(data[i][0]);
-		  y.push(data[i][1]);
-		}
-	}
-	else if(data[i] != null && typeof data[i] === 'number' ){//If type of X axis is category
-		x.push(i);
-		y.push(data[i]);
-	}
+    if (data[i] != null && Object.prototype.toString.call(data[i]) === '[object Array]') {
+      if (data[i] != null && data[i][0] != null && data[i][1] != null) {
+        x.push(data[i][0]);
+        y.push(data[i][1]);
+      }
+    }
+    else if(data[i] != null && typeof data[i] === 'number' ){//If type of X axis is category
+      x.push(i);
+      y.push(data[i]);
+    }
   }
 
   if (type == 'linear') {
