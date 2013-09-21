@@ -93,23 +93,38 @@ function fitData(data, typ) {
   }
 
   if (type == 'linear') {
+
     ret = linearRegression(x, y);
     for (var i = 0; i < x.length; i++) {
       res = ret[0] * x[i] + ret[1];
       ypred.push([x[i], res]);
     }
+
+    return {
+      data: ypred,
+      slope: ret[0],
+      intercept: ret[1],
+      y: function(x) {
+        return (this.slope * x) + this.intercept;
+      },
+      x: function(y) {
+        return (y - this.intercept) / this.slope;
+      }
+    };
   }
   else if (type == 'exp' || type == 'exponential') {
+
     ret = expRegression(x, y);
     for (var i = 0; i < x.length; i++) {
       res = ret[1] * Math.pow(ret[0], x[i]);
       ypred.push([x[i], res]);
     }
-  }
-  return {
-    data: ypred,
-    slope: ret[0],
-    intercept: ret[1]
-  };
-}
+    ypred.sort();
 
+    return {
+      data: ypred,
+      base: ret[0],
+      coeff: ret[1]
+    };
+  }
+}
