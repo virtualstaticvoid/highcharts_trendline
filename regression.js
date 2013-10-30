@@ -71,6 +71,10 @@ function expRegression(X, Y) {
   return [base, coeff];
 }
 
+/*
+    TODO: this function is quite inefficient.
+    Refactor it if there is problem with speed.
+ */
 function fitData(data, typ) {
   var type = (typ == null) ? 'linear' : typ;
   var ret;
@@ -89,6 +93,12 @@ function fitData(data, typ) {
     else if(data[i] != null && typeof data[i] === 'number' ){//If type of X axis is category
       x.push(i);
       y.push(data[i]);
+    }
+    else if(data[i] != null && Object.prototype.toString.call(data[i]) === '[object Object]'){
+      if (data[i] != null && data[i].x != null && data[i].y != null) {
+        x.push(data[i].x);
+        y.push(data[i].y);
+      }
     }
   }
 
