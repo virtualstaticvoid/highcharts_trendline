@@ -49,10 +49,28 @@ var chart_linear = new Highcharts.Chart({
 
 Checkout the demo HTML files for examples of how to plot various trendlines.
 
-* ![Example Chart](demo.jpg)
-* ![Example Chart](demo3.jpg)
-* ![Example Chart](demo4.jpg)
+* [Linear Regression][demo1]
+
+  ![Example Chart](demo.jpg)
+
+* [Linear Regression - One dimensional data][demo3]
+
+  ![Example Chart](demo3.jpg)
+
+* [Line Regression (X axis set to category)][demo4]
+
+  ![Example Chart](demo4.jpg)
+
+* [Linear Regression - With Projection][demo5]
+
+  ![Example Chart](demo5.jpg)
 
 # Credits
 
 The code for the `regression.js` script was extracted from [jqplot.trendline.js](http://www.jqplot.com/docs/files/plugins/jqplot-trendline-js.html), by Chris Leonello.
+
+[demo1]: https://github.com/virtualstaticvoid/highcharts_trendline/blob/master/demo.html
+[demo2]: https://github.com/virtualstaticvoid/highcharts_trendline/blob/master/demo2.html
+[demo3]: https://github.com/virtualstaticvoid/highcharts_trendline/blob/master/demo3.html
+[demo4]: https://github.com/virtualstaticvoid/highcharts_trendline/blob/master/demo4.html
+[demo5]: https://github.com/virtualstaticvoid/highcharts_trendline/blob/master/demo5.html
