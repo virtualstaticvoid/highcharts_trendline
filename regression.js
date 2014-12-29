@@ -106,7 +106,7 @@ function fitData(data, typ) {
 
     ret = linearRegression(x, y);
     for (var i = 0; i < x.length; i++) {
-      res = ret[0] * x[i] + ret[1];
+      res = ret.slope * x[i] + ret.r2;
       ypred.push([x[i], res]);
     }
 
