@@ -2,6 +2,8 @@
 
 This project illustrates how you can easily add a trendline to your [Highchart](http://www.highcharts.com) charts.
 
+_Note:_ If you are looking for a more complete implementation, checkout the [highcharts-regression][highcharts-regression] [plugin][plugin].
+
 ## Usage
 
 Include the `regression.js` script into your HTML page.
@@ -74,3 +76,5 @@ The code for the `regression.js` script was extracted from [jqplot.trendline.js]
 [demo3]: https://github.com/virtualstaticvoid/highcharts_trendline/blob/master/demo3.html
 [demo4]: https://github.com/virtualstaticvoid/highcharts_trendline/blob/master/demo4.html
 [demo5]: https://github.com/virtualstaticvoid/highcharts_trendline/blob/master/demo5.html
+[highcharts-regression]: https://github.com/streamlinesocial/highcharts-regression
+[plugin]: http://www.highcharts.com/plugin-registry/single/22/Highcharts%20regression
